@@ -1,19 +1,28 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "schedule": ["on the first day of the month"],
-  "minimumReleaseAge": "1 week",
+  "extends": [
+    "config:best-practices",
+    ":disableDependencyDashboard"
+  ],
+  "minimumReleaseAge": "3 days",
   "lockFileMaintenance": {
+    "extends": ["schedule:weekly"],
     "enabled": true,
-    "schedule": ["before 6am on monday"],
     "automerge": true,
-    "automergeType": "branch",
-    "minimumReleaseAge": "1 week"
+    "automergeType": "branch"
   },
   "nix": {
     "enabled": true
   },
   "gradle": {
     "enabled": false
-  }
+  },
+  "packageRules": [
+    {
+      "description": "Disable non-breaking separate crate updates, they are handled by lockfile updates",
+      "matchCategories": ["rust"],
+      "matchJsonata": ["isBreaking != true"],
+      "enabled": false
+    }
+  ]
 }
