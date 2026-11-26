@@ -34,7 +34,7 @@ regex = "1"
 serde = "1"
 serde_json = "1"
 streaming-iterator = "0.1"
-uniffi = { version = "0.31" }
+uniffi = { version = "0.32" }
 
 [profile.release]
 lto = true
